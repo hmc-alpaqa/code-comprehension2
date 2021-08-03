@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Submissions</h1>
+{% if submissions %}
+<ul>
+  {% for submission in submissions %}
+  <li>
+    <a href="{{ submission.get_absolute_url }}">{{ submission }}</a> ({{submission.user}})
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no submissions yet.</p>
+{% endif %}
+{% endblock %}

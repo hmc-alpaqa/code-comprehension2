@@ -1,0 +1,41 @@
+general:
+Without asking participants to aim for path coverage (simply
+asking them to write what they think are a complete set of
+tests), see if certain code patterns prompt greater path coverage
+than others.
+
+where_refactor.c:
+Code that consists of if statements, followed by a loop
+containing a similar pattern of if statements.
+Tests for a difference in refactoring nested functions vs
+refactoring subsequent functions. As these different refactoring
+methods have different impacts on path complexity (nested refactoring
+having a stronger impact), this is a way to test the correlation
+between path complexity and code comprehension.
+Also interesting because many sources simply refer to refactoring
+as a way to improve code without differentiating between nested refactoring
+and unnested refactoring.
+
+how_much_refactor.c:
+Code that consists of an if and a loop in a recursive manner, where level n
+is in the loop of level n-1.
+Tests for what levels of refactorization have the greatest impact on code
+comprehension. The rate at which path complexity increases, as a function
+of the level of loop nesting depth, slows down with greater nesting depths.
+If there is a correlation between path complexity and code comprehension,
+you would expect the rate at which code comprehension changes to slow down
+as well.
+
+block_dependence.c:
+Code consists of subsequent blocks of code where the outputs of one block
+either do or don't interact with the inputs/outputs of the next block.
+Case 1:
+block n's outputs are the inputs of block n+1
+Case 2:
+the outputs of blocks [0, n] interact at some point in the code
+Case 3:
+the inputs and outputs of blocks [0, n] are inpdependent
+Covering paths across blocks is only really necessary if there is some form of
+dependence between blocks. Do programmers take path complexity more or less
+into account when the paths extending across blocks influence each other?
+

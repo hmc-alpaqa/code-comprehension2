@@ -1,0 +1,20 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% load static %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent timer" id="timer">0:20</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p><final instructions></p>
+</div>
+
+<br><br>
+
+<a href="{% url 'select_challenge_page' origin_type='<origin type>' origin_name='<origin name>' two_pages_back=previous_page username=username %}"><button class="button" type="button"><next page></button></a>
+{% endblock %}

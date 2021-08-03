@@ -1,0 +1,54 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% load static %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% load static %}
+<script src="{% static 'js/poll_input2.js' %}"></script>
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent timer" id="timer">12:00</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+Read the code and enter your set of inputs into the text area below. Try to get <span class="positive-text">as many unique outputs</span> as possible and <span class="negative-text">avoid including multiple inputs that produce the same output</span>.
+</p>
+</div>
+
+<div class="form-code">
+  <p>void func_one(char input_one[], char input_two[]) {<br>&nbsp&nbsp&nbsp&nbspint len_one = strlen(input_one);<br>&nbsp&nbsp&nbsp&nbspint len_two = strlen(input_two);<br>&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspif(len_one > 3 || len_two > 3) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("1 ");<br><br>&nbsp&nbsp&nbsp&nbsp} else {<br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfunc_two(input_one, len_one, input_two, len_two);<br>&nbsp&nbsp&nbsp&nbsp}<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspprintf("8 ");<br>}<br><br>void func_two(char input_one[], int len_one, char input_two[], int len_two) {<br><br>&nbsp&nbsp&nbsp&nbspfor(int i = 0; i < len_one; i++) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("2 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfunc_three(input_one, len_one, input_two, len_two, i);<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br><br>void func_three(char input_one[], int len_one, char input_two[], int len_two, int i) {<br>&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbspfor(int j = 0; j < len_two; j++) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("3 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif(i + j >= len_one) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("4 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif(input_one[i + j] != input_two[j]) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("5 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp} else {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("6 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif(j == len_two - 1) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("7 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbreak;<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br></p>
+</div>
+
+<form>
+  <div>
+    <label for="textarea1" class="form-label">
+Values for input_one
+</label>
+    <br>
+    <textarea class="textarea1" id="textarea1" name="textarea1" rows="4" cols="50"></textarea>
+  </div>
+
+  <div>
+    <label for="textarea2" class="form-label">
+Values for input_two
+</label>
+    <br>
+    <textarea class="textarea2" id="textarea2" name="textarea2" rows="4" cols="50"></textarea>
+  </div>
+
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='challenge' origin_name='contains_substring4.html' two_pages_back=previous_page username=username %}"><button class="button" type="button" onclick="submit_challenge('{{ username }}', '{{ factor }}', document.getElementById('timer').innerHTML, document.getElementById('textarea1').value, document.getElementById('textarea2').value)">
+Submit and continue
+</button></a>
+</form>
+
+{% load static %}
+<script src="{% static 'js/challenge2.js' %}"></script>
+{% endblock %}
+
+
+

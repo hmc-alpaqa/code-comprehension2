@@ -1,0 +1,23 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Rest</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+This page is untimed. Go to the next page when you are ready to continue with the challege.
+</p>
+</div>
+
+<br>
+
+<a href="{% url 'select_challenge_page' origin_type='rest' origin_name='rest_page.html' two_pages_back=previous_page username=username %}"><button class="button" type="button">
+Continue
+</button></a>
+{% endblock %}
+

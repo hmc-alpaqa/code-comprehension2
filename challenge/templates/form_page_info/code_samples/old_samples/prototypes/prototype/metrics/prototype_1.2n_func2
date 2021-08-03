@@ -1,0 +1,1 @@
+[('Cyclomatic Complexity', 4), ('NPath Complexity', 4), ('Path Complexity', ('1.1921**n', '0.1498*1.0133**n + 0.2684*1.0949**n + 0.1302*1.1676**n + 0.7079*1.1921**n + 0.5'))]

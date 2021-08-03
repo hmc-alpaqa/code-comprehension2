@@ -1,0 +1,17 @@
+<code explanation>
+Read the code and enter your set of inputs into the text area below. Try to get <span class="positive-text">as many unique outputs</span> as possible and <span class="negative-text">avoid including multiple inputs that produce the same output</span>. 
+<code explanation>
+
+<input label>
+Values for input_one
+<input label>
+
+<default inputs><default inputs>
+
+<origin type>challenge<origin type>
+
+<origin name>contains_loop<challenge_number>.html<origin name>
+
+<next page>
+Submit and Continue
+<next page>

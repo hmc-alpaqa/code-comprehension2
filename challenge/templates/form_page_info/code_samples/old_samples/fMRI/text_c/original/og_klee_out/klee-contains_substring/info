@@ -1,0 +1,22 @@
+klee contains_substring.bc
+PID: 70
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2021-06-24 13:57:38
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2021-06-24 14:01:09
+Elapsed: 00:03:31
+KLEE: done: explored paths = 23938
+KLEE: done: avg. constructs per query = 137
+KLEE: done: total queries = 4658
+KLEE: done: valid queries = 946
+KLEE: done: invalid queries = 3712
+KLEE: done: query cex = 4658
+
+KLEE: done: total instructions = 1737557
+KLEE: done: completed paths = 23938
+KLEE: done: generated tests = 23938

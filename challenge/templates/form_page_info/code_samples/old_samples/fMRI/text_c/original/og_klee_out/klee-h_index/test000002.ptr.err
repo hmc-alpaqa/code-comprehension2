@@ -1,0 +1,16 @@
+Error: memory error: out of bound pointer
+File: original/h_index.c
+Line: 15
+assembly.ll line: 46
+Stack: 
+	#000000046 in compute (nums=94477878724768, len) at original/h_index.c:15
+	#100000191 in main (argc=1, argv=94477877904640) at original/h_index.c:49
+Info: 
+	address: (Add w64 94477878724768
+          (Mul w64 4
+                   (SExt w64 (Add w32 4294967295
+                                      (ReadLSB w32 0 len)))))
+	example: 94486468659356
+	range: [94486468659356, 94486468659356]
+	next: object at 23125058042688 of size 1536
+		MO33[1536] (no allocation info)

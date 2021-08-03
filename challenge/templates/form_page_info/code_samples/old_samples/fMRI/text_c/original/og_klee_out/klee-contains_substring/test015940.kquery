@@ -1,0 +1,49 @@
+array string1[10] : w32 -> w8 = symbolic
+array string2[10] : w32 -> w8 = symbolic
+(query [(Eq 0 (Read w8 9 string1))
+         (Eq 0 (Read w8 9 string2))
+         (Eq false
+             (Eq 0 N0:(Read w8 0 string1)))
+         (Eq false
+             (Eq 0 N1:(Read w8 1 string1)))
+         (Eq false
+             (Eq 0 N2:(Read w8 2 string1)))
+         (Eq false
+             (Eq 0 N3:(Read w8 3 string1)))
+         (Eq false
+             (Eq 0 N4:(Read w8 4 string1)))
+         (Eq false
+             (Eq 0 (Read w8 5 string1)))
+         (Eq false
+             (Eq 0 (Read w8 6 string1)))
+         (Eq false
+             (Eq 0 (Read w8 7 string1)))
+         (Eq 0 (Read w8 8 string1))
+         (Eq false
+             (Eq 0 N5:(Read w8 0 string2)))
+         (Eq false
+             (Eq 0 N6:(Read w8 1 string2)))
+         (Eq false
+             (Eq 0 N7:(Read w8 2 string2)))
+         (Eq false
+             (Eq 0 (Read w8 3 string2)))
+         (Eq false
+             (Eq 0 (Read w8 4 string2)))
+         (Eq false
+             (Eq 0 (Read w8 5 string2)))
+         (Eq false
+             (Eq 0 (Read w8 6 string2)))
+         (Eq false
+             (Eq 0 (Read w8 7 string2)))
+         (Eq 0 (Read w8 8 string2))
+         (Eq (SExt w32 N0) N8:(SExt w32 N5))
+         (Eq false
+             (Eq N9:(SExt w32 N1) N10:(SExt w32 N6)))
+         (Eq N9 N8)
+         (Eq false
+             (Eq N11:(SExt w32 N2) N10))
+         (Eq N11 N8)
+         (Eq (SExt w32 N3) N10)
+         (Eq false
+             (Eq (SExt w32 N4) (SExt w32 N7)))]
+        false)

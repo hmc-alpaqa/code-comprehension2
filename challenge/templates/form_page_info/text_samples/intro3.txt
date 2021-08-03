@@ -1,0 +1,49 @@
+<code explanation>
+In addition to integers and strings, the final input type you may encounter in this challenge is an array of integers, denoted by "int[]". If you see a parameter like "int[] input", then input is a sequence of integers where each integer can be accessed and modified with indexing (also starting at 0). Just as "strlen" calculates the length of a string in characters, this challenge will use "arrlen" to calculate the length of an integer array in integers. The code snippet below, which takes two inputs, demonstrates some uses of integer arrays.
+<code explanation>
+
+//code snippet
+
+<textarea explanation>
+To enter integer array inputs, you will use the format shown in the input text area below, where integers are separated by commas and surrounded by square brackets. Note that there are two text areas because "func_one" takes two inputs. Each line of the two text areas still correspond with a single execution of "func_one". For example, with the default inputs given, one execution of "func_one" will be given [3,5,9] as input_one and [81,0,-5] as input_two. Another execution will be given [5,9] as input_one and [-1] as input_two, and so on. Thus, each text area should have the same number of lines of input. Experiment with different inputs and use the "Evaluate Inputs" button to see what output is produced.
+<textarea explanation>
+
+<input1 label>
+Values for input_one
+<input1 label>
+
+<default input1 inputs>
+[3,5,9]
+[5,9]
+[]
+<default input1 inputs>
+
+<input2 label>
+Values for input_two
+<input2 label>
+
+<default input2 inputs>
+[81,0,-5]
+[-1]
+[5,5,5]
+<default input2 inputs>
+
+<evaluate button>
+Evaluate Inputs
+<evaluate button>
+
+<reset button>
+Reset to Example
+<reset button>
+
+<output label>
+Outputs from executing func_one
+<output label>
+
+<origin type>intro<origin type>
+
+<origin name>intro3.html<origin name>
+
+<next page>
+Next
+<next page>

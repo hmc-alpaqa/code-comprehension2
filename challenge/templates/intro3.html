@@ -1,0 +1,86 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Introduction</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+In addition to integers and strings, the final input type you may encounter in this challenge is an array of integers, denoted by "int[]". If you see a parameter like "int[] input", then input is a sequence of integers where each integer can be accessed and modified with indexing (also starting at 0). Just as "strlen" calculates the length of a string in characters, this challenge will use "arrlen" to calculate the length of an integer array in integers. The code snippet below, which takes two inputs, demonstrates some uses of integer arrays.
+</p>
+</div>
+    
+<div class="form-code">
+  <p>void func_one(int input_one[], int input_two[]) {<br>&nbsp&nbsp&nbsp&nbspint length_one = arrlen(input_one);<br>&nbsp&nbsp&nbsp&nbspint length_two = arrlen(input_two);<br><br>&nbsp&nbsp&nbsp&nbspif(length_one < 3 || length_two < 3) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("1 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn;<br>&nbsp&nbsp&nbsp&nbsp}<br><br>&nbsp&nbsp&nbsp&nbspif(input_one[2] == input_two[2]) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("2 ");<br><br>&nbsp&nbsp&nbsp&nbsp} else {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("3 ");<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br></p>
+</div>
+
+<div class="form-text">
+  <p>
+To enter integer array inputs, you will use the format shown in the input text area below, where integers are separated by commas and surrounded by square brackets. Note that there are two text areas because "func_one" takes two inputs. Each line of the two text areas still correspond with a single execution of "func_one". For example, with the default inputs given, one execution of "func_one" will be given [3,5,9] as input_one and [81,0,-5] as input_two. Another execution will be given [5,9] as input_one and [-1] as input_two, and so on. Thus, each text area should have the same number of lines of input. Experiment with different inputs and use the "Evaluate Inputs" button to see what output is produced.
+</p>
+</div>
+
+<form>
+
+  <div>
+    <label for="textarea1" class="form-label">
+Values for input_one
+</label>
+    <br>
+    <textarea id="textarea1" name="textarea1" rows="4" cols="50">
+[3,5,9]
+[5,9]
+[]
+</textarea>
+  </div>
+  <div>
+    <label for="textarea2" class="form-label">
+Values for input_two
+</label>
+    <br>
+    <textarea id="textarea2" name="textarea2" rows="4" cols="50">
+[81,0,-5]
+[-1]
+[5,5,5]
+</textarea>
+  </div>
+  
+  
+  <br>
+  
+  <button class="button" type="button" onclick="clickEvaluateButton()">
+Evaluate Inputs
+</button>
+  <button class="button" type="button" onclick="clickResetButton()">
+Reset to Example
+</button>
+
+  <br>
+  <br>
+  
+  <label for="outputs" class="form-label">
+Outputs from executing func_one
+</label>
+
+  <br>
+
+  <textarea id="outputs" name="outputs" rows="4" cols="50"></textarea>
+
+  <br>
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='intro' origin_name='intro3.html' two_pages_back=previous_page username=username %}"><button class="button" type="button">
+Next
+</button></a>
+
+</form>
+
+{% load static %}
+<script src="{% static 'js/intro3_func.js' %}"></script>
+{% endblock %}
+
+

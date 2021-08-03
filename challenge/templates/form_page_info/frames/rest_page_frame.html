@@ -1,0 +1,18 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Rest</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p><rest instructions></p>
+</div>
+
+<br>
+
+<a href="{% url 'select_challenge_page' origin_type='<origin type>' origin_name='<origin name>' two_pages_back=previous_page username=username %}"><button class="button" type="button"><next page></button></a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "challenge_generic.html" %}
+
+{% block content %}
+<div>
+  <h1 class="center_text">Welcome to the Code Comprehension Challenge</h1>
+</div>
+<div class="center">
+  <form class="padding" action="{% url 'create_key' origin='login_or_new' %}">
+    <input class="button" type="submit" value="New Visitor (I don't have a save key)"/>
+  </form>
+  <form class="padding" action="{% url 'enter_key' origin='login_or_new' %}">
+    <input class="button" type="submit" value="Returning Visitor (I have a save key)"/>
+  </form>
+</div>
+{% endblock %}

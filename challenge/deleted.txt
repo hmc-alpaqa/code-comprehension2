@@ -1,0 +1,59 @@
+
+# Create your views here.
+class SubmissionDetailView(generic.DetailView):
+    model = Submission
+
+    #def submission_detail_view(request, primary_key):
+    #    print(f"THERE ARE {len(Submission.objects)} SUBMISSIONS")
+
+    #    submission = Submission.objects.get(pk=primary_key)
+        #try:
+        #    submission = Submission.objects.get(pk=primary_key)
+        #except Submission.DoesNotExist:
+        #    raise Http404('Submission does not exist')
+
+    #    return render(request, 'challenge/submission_detail.html',
+    #                  context={'submission': submission})
+
+class SubmissionsView(generic.ListView):
+    model = Submission
+    context_object_name = 'submissions'
+
+    def get_queryset(self, challenge_tag):
+        queryset = self.get_queryset()
+        queryset = queryset.filter(challenge_tag__exact == challenge_tag)
+        print("GOT TO OVERLOADED FUNCTION")
+        return queryset
+
+
+    def get_queryset(self):
+        queryset = Submission.objects.filter(which_submission__exact=1)[:20]
+        print(f"PRINTING THE LENGTH OF THE QUERYSET: {len(queryset)}")
+        return queryset
+
+def index(request):
+    """View function for the challenge page of the site"""
+
+    #Generate counts of different model objects
+    num_users = User.objects.all().count()
+    num_submissions = Submission.objects.all().count()
+
+    #Number of challenge problems
+    #'all()' is implied by default
+    num_challenges = ChallengeTag.objects.count()
+
+    #Number of submissions by unique users
+    num_first_submissions = Submission.objects.filter(
+        which_submission__exact=1).count()
+
+
+    #Info will be passed to the index.html sheet returned
+    context = {
+        'num_users': num_users,
+        'num_submissions': num_submissions,
+        'num_first_submissions': num_first_submissions,
+        'num_challenges': num_challenges,
+    }
+
+    return render(request, 'index.html', context=context)
+

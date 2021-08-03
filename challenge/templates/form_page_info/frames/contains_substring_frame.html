@@ -1,0 +1,43 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% load static %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% load static %}
+<script src="{% static 'js/poll_input2.js' %}"></script>
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent timer" id="timer">12:00</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p><code explanation></p>
+</div>
+
+<div class="form-code">
+  <p>insert code here</p>
+</div>
+
+<form>
+  <div>
+    <label for="textarea1" class="form-label"><input label1></label>
+    <br>
+    <textarea class="textarea1" id="textarea1" name="textarea1" rows="4" cols="50"><default inputs1></textarea>
+  </div>
+
+  <div>
+    <label for="textarea2" class="form-label"><input label2></label>
+    <br>
+    <textarea class="textarea2" id="textarea2" name="textarea2" rows="4" cols="50"><default inputs2></textarea>
+  </div>
+
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='<origin type>' origin_name='<origin name>' two_pages_back=previous_page username=username %}"><button class="button" type="button" onclick="submit_challenge('{{ username }}', '{{ factor }}', document.getElementById('timer').innerHTML, document.getElementById('textarea1').value, document.getElementById('textarea2').value)"><next page></button></a>
+</form>
+
+{% load static %}
+<script src="{% static 'js/challenge2.js' %}"></script>
+{% endblock %}

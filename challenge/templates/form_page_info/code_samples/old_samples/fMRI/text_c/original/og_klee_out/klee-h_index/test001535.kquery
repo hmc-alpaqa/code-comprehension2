@@ -1,0 +1,52 @@
+array len[4] : w32 -> w8 = symbolic
+array nums[40] : w32 -> w8 = symbolic
+(query [(Sle N0:(ReadLSB w32 0 len)
+              10)
+         (Slt 0 N0)
+         (Slt 0 N1:(Add w32 4294967295 N0))
+         (Slt N2:(ReadLSB w32 4 nums)
+              N3:(ReadLSB w32 0 nums))
+         (Slt 1 N1)
+         (Eq false
+             (Slt N4:(ReadLSB w32 8 nums)
+                  N3))
+         (Slt 2 N1)
+         (Slt N5:(ReadLSB w32 12 nums)
+              N4)
+         (Slt 3 N1)
+         (Slt N6:(ReadLSB w32 16 nums)
+              N4)
+         (Eq false (Slt 4 N1))
+         (Slt N5 N3)
+         (Eq false (Slt N6 N3))
+         (Eq false (Slt N5 N2))
+         (Sle N1
+              (ReadLSB w32 N7:(Extract w32 0 (Mul w64 4 (SExt w64 N1))) U0:[19=N8:(Read w8 11 nums),
+                                                                            18=N9:(Read w8 10 nums),
+                                                                            17=N10:(Read w8 9 nums),
+                                                                            16=N11:(Read w8 8 nums),
+                                                                            15=N12:(Read w8 19 nums),
+                                                                            14=N13:(Read w8 18 nums),
+                                                                            13=N14:(Read w8 17 nums),
+                                                                            12=N15:(Read w8 16 nums),
+                                                                            11=N16:(Read w8 3 nums),
+                                                                            10=N17:(Read w8 2 nums),
+                                                                            9=N18:(Read w8 1 nums),
+                                                                            8=N19:(Read w8 0 nums),
+                                                                            7=N20:(Read w8 15 nums),
+                                                                            6=N21:(Read w8 14 nums),
+                                                                            5=N22:(Read w8 13 nums),
+                                                                            4=N23:(Read w8 12 nums),
+                                                                            7=N16,
+                                                                            6=N17,
+                                                                            5=N18,
+                                                                            4=N19,
+                                                                            3=N24:(Read w8 7 nums),
+                                                                            2=N25:(Read w8 6 nums),
+                                                                            1=N26:(Read w8 5 nums),
+                                                                            0=N27:(Read w8 4 nums)] @ nums))
+         (Eq false
+             (Sle N1
+                  (ReadLSB w32 N28:(Extract w32 0 (Mul w64 4
+                                                           (SExt w64 (Add w32 4294967294 N0)))) U0)))]
+        false)

@@ -1,0 +1,53 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Introduction</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p><code explanation></p>
+</div>
+    
+<div class="form-code">
+  <p>insert code here</p>
+</div>
+
+<div class="form-text">
+  <p><textarea explanation></p>
+</div>
+
+<form>
+  <label for="textarea" class="form-label"><inputs label></label>
+
+  <br>
+
+  <textarea id="textarea" name="textarea" rows="4" cols="50"><default inputs></textarea>
+
+  <br>
+  
+  <button class="button" type="button" id="evaluate_button" onclick="clickEvaluateButton()"><evaluate button></button>
+  <button class="button" type="button" id="reset_button" onclick="clickResetButton()"><reset button></button>
+
+  <br>
+  <br>
+  
+  <label for="outputs" class="form-label"><output label></label>
+
+  <br>
+
+  <textarea id="outputs" name="outputs" rows="4" cols="50"></textarea>
+
+  <br>
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='<origin type>' origin_name='<origin name>' two_pages_back=previous_page username=username %}"><button class="button" type="button"><next page></button></a>
+
+</form>
+
+{% load static %}
+<script src="{% static 'js/intro1_func.js' %}"></script>
+{% endblock %}

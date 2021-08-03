@@ -1,0 +1,24 @@
+{% extends "challenge_generic.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles_username.css' %}">
+<!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
+{% endblock %}
+
+{% block content %}
+<div class="big_padding center_text form_font">
+  <br><br>
+  {% if attempted_user %}
+  <p class="create-enter-text">{{attempted_user}} has already been taken.<br></p>
+  {% endif %}
+  <p class="create-enter-text">Enter a username for saving progress and <br>displaying your stats on
+  the leaderboard...<br>Ex: {{suggested_user}}</p>
+</div>
+<div class="big_padding form__group">
+  <form action="{% url 'create_key' origin='create_key' %}">
+    <input name="username" type="text" class="form__input form_font" id="name" placeholder="Username" required="" autocomplete="off"/>
+  </form>
+  <label for="name" class="form__label form_font center_text">Username</label>
+</div>
+{% endblock %}

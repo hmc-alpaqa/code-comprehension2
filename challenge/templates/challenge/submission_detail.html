@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Submission</h1>
+<p>Submitted by user {{ submission.user }}</p>
+<div style="margin-left:20px;margin-top:20px">
+  <h4>Factors</h4>
+  {% for factor in submission.factorsubmission_set.all %}
+  <hr>
+  <p class="{% if factor.challenge_tag == 'H Index' %}text-success{% else %}text-danger{% endif %}">
+    {{ factor.challenge_tag }}
+  </p>
+  {% endfor %}
+</div>
+{% endblock %}

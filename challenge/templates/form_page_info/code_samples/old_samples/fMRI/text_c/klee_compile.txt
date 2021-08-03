@@ -1,0 +1,1 @@
+clang -I ../klee_src/include -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone <filename>

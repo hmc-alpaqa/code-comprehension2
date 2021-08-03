@@ -1,0 +1,46 @@
+//context for the code
+<code explanation>
+For this challenge, you will be presented with a series of code snippets written in C. Each piece of code will contain a number of print statements that, when executed, print text to the screen. An example looks like this:
+<code explanation>
+
+//code will go here
+
+//explanation of text area
+<textarea explanation>
+You will be given a text box where you can provide different inputs for func_one. Each line consists of the inputs necessary for a single execution of func_one. Because func_one takes an int, each line should consist of a single integer. Some example inputs are given. You can change the inputs and/or see what they would print to the screen when func_one is executed.
+<textarea explanation>
+
+//Text area label
+<inputs label>
+Values for input_one
+<inputs label>
+
+//default text area text
+<default inputs>
+3
+7
+<default inputs>
+
+//Evaluate inputs button text
+<evaluate button>
+Evaluate Inputs
+<evaluate button>
+
+//Reset to example button text
+<reset button>
+Reset to Example
+<reset button>
+
+//Outputs label
+<output label>
+Outputs from executing func_one
+<output label>
+
+//Next page button text
+<next page>
+Next
+<next page>
+
+<origin type>intro<origin type>
+
+<origin name>intro1.html<origin name>

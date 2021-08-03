@@ -1,0 +1,3 @@
+heroku create <site name>
+git push heroku HEAD:master
+heroku run python manage.py migrate

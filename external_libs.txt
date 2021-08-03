@@ -1,0 +1,5 @@
+pip install parse
+pip install random-username
+pip install gunicorn
+pip install dj-database-url
+pip install whitenoise

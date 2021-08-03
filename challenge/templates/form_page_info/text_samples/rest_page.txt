@@ -1,0 +1,11 @@
+<rest instructions>
+This page is untimed. Go to the next page when you are ready to continue with the challege.
+<rest instructions>
+
+<origin type>rest<origin type>
+
+<origin name>rest_page.html<origin name>
+
+<next page>
+Continue
+<next page>

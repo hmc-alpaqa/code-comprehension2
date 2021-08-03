@@ -1,0 +1,34 @@
+array len[4] : w32 -> w8 = symbolic
+array nums[40] : w32 -> w8 = symbolic
+(query [(Sle N0:(ReadLSB w32 0 len)
+              10)
+         (Slt 0 N0)
+         (Slt 0 N1:(Add w32 4294967295 N0))
+         (Slt (ReadLSB w32 4 nums)
+              N2:(ReadLSB w32 0 nums))
+         (Slt 1 N1)
+         (Eq false
+             (Slt N3:(ReadLSB w32 8 nums)
+                  N2))
+         (Slt 2 N1)
+         (Eq false
+             (Slt N4:(ReadLSB w32 12 nums)
+                  N3))
+         (Slt 3 N1)
+         (Slt (ReadLSB w32 16 nums)
+              N4)
+         (Slt 4 N1)
+         (Eq false
+             (Slt N5:(ReadLSB w32 20 nums)
+                  N4))
+         (Slt 5 N1)
+         (Eq false
+             (Slt N6:(ReadLSB w32 24 nums)
+                  N5))
+         (Slt 6 N1)
+         (Slt (ReadLSB w32 28 nums)
+              N6)
+         (Slt 7 N1)
+         (Slt (ReadLSB w32 32 nums)
+              N6)]
+        false)

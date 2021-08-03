@@ -1,0 +1,55 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Submission Page</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+    Thank you for completing the challenge and participating in this study. Please answer two short questions about your experience with programming. Your responses will be very helpful when the results of the study are analyzed.
+  </p>
+</div>
+
+<br>
+
+<form>
+  <label for="textarea1">
+    What is your previous experience with reading/writing code?
+  </label>
+
+  <br><br>
+
+  <textarea id="textarea1" name="textarea1" rows="4" cols="50">
+    Ex: 1 year casually and 2 years in professional setting.
+  </textarea>
+
+  <br>
+  <br>
+  <br>
+
+  <label for="textarea2">
+    What is your previous experience with reading/writing in C? How much easier would the challenge have been in a language you were more familiar with?
+  </label>
+
+  <br><br>
+
+  <textarea id="textarea2" name="textarea2" rows="4" cols="50">
+    Ex: I used it for a small part of a couple of projects, the challenge would have been a bit easier for me in Python.
+  </textarea>
+
+  <br>
+  <br>
+  <br>
+
+<a href="{% url 'select_leaderboard' %}"><button class="button" type="button" onclick="final_questions('{{ username }}', document.getElementById('textarea1').value, document.getElementById('textarea2').value)">
+      Submit
+  </button></a>
+</form>
+
+{% load static %}
+<script src="{% static 'js/final_questions.js' %}"></script>
+{% endblock %}  

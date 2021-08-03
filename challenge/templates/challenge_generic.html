@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<style>
+.body > * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body > * > * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body > * > * > * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.base_font {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.fill {
+    height: 100vh;
+    width: 100vw;
+}
+.fill_parent {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.center_text {
+    width: 100%;
+    text-align: center;
+}
+.center-contents {
+    width: 100%;
+}
+.center-contents div {
+    margin-left: auto;
+    margin-right: auto;
+}
+.button {
+    border: 2px solid black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.padding {
+    margin: 10px;
+}
+.big_padding {
+  margin: 50px;
+}
+.fixed-head {
+    width: 100vw;
+    position: fixed;
+    margin: 0 auto;
+    background: #fff;
+    font-size: 2.5em;
+    padding: 10px;
+    text-align: center;
+}
+.form-contents {
+    width: 70%;
+}
+.form-text {
+    font-size: .75em;
+}
+.form-code {
+    font-size: .75em;
+}
+.form-label {
+    font-size: .75em;
+}
+.create-enter-key {
+    font-size: .75em;
+.positive-text {
+    color: green;
+    font-weight: bold;
+}
+.negative-text {
+    color: red;
+    font-weight: bold;
+}
+</style>
+
+<html lang="en" class="fill">
+  <head>
+    <title>Code Comprehension Challenge</title>
+    <meta charset="utf-8">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+	    
+    {% block head %}{% endblock %}
+
+  </head>
+  <body class="fill_parent">
+    <div class="fill_parent">{% block content %}{% endblock %}</div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Introduction</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+For this challenge, you will be presented with a series of code snippets written in C. Each piece of code will contain a number of print statements that, when executed, print text to the screen. An example looks like this:
+</p>
+</div>
+    
+<div class="form-code">
+  <p>void func_one(int input) {<br>&nbsp&nbsp&nbsp&nbspprintf("1 ");<br><br>&nbsp&nbsp&nbsp&nbspif(input > 5) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("2 ");<br><br>&nbsp&nbsp&nbsp&nbsp} else {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfunc_two();<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br><br>void func_two() {<br>&nbsp&nbsp&nbsp&nbspprintf("3 ");<br>}<br></p>
+</div>
+
+<div class="form-text">
+  <p>
+You will be given a text box where you can provide different inputs for func_one. Each line consists of the inputs necessary for a single execution of func_one. Because func_one takes an int, each line should consist of a single integer. Some example inputs are given. You can change the inputs and/or see what they would print to the screen when func_one is executed.
+</p>
+</div>
+
+<form>
+  <label for="textarea" class="form-label">
+Values for input_one
+</label>
+
+  <br>
+
+  <textarea id="textarea" name="textarea" rows="4" cols="50">
+3
+7
+</textarea>
+
+  <br>
+  
+  <button class="button" type="button" id="evaluate_button" onclick="clickEvaluateButton()">
+Evaluate Inputs
+</button>
+  <button class="button" type="button" id="reset_button" onclick="clickResetButton()">
+Reset to Example
+</button>
+
+  <br>
+  <br>
+  
+  <label for="outputs" class="form-label">
+Outputs from executing func_one
+</label>
+
+  <br>
+
+  <textarea id="outputs" name="outputs" rows="4" cols="50"></textarea>
+
+  <br>
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='intro' origin_name='intro1.html' two_pages_back=previous_page username=username %}"><button class="button" type="button">
+Next
+</button></a>
+
+</form>
+
+{% load static %}
+<script src="{% static 'js/intro1_func.js' %}"></script>
+{% endblock %}
+
+

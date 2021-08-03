@@ -1,0 +1,10 @@
+Graph 0 had 2 unique paths:
+1 occurences of paths of length 1
+1 occurences of paths of length 2
+Graph 1 had 2 unique paths:
+2 occurences of paths of length 2
+Graph 2 had 2 unique paths:
+2 occurences of paths of length 2
+Graph 3 had 4 unique paths:
+1 occurences of paths of length 5
+3 occurences of paths of length 6

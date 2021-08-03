@@ -1,0 +1,72 @@
+{% extends 'challenge_form.html' %}
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Introduction</p>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-text">
+  <p>
+In C, strings are denoted by "char*". If you see a parameter like "char* input" in one of the code snippets you are given, then the variable "input" is a string. Strings in C can be indexed, starting at 0, to set or retrieve a specific character. The code snippet below, which uses the function "strlen" to calculate the length of a string in characters, demonstrates some of the ways you might see strings come up during the challenge. 
+</p>
+</div>
+    
+<div class="form-code">
+  <p>void func_one(char* input) {<br>&nbsp&nbsp&nbsp&nbspprintf("1 ");<br><br>&nbsp&nbsp&nbsp&nbspif(strlen(input) < 1) {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("2 ");<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn;<br>&nbsp&nbsp&nbsp&nbsp}<br><br>&nbsp&nbsp&nbsp&nbspif(input[0] == 'c') {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspprintf("3 ");<br><br>&nbsp&nbsp&nbsp&nbsp} else {<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfunc_two();<br>&nbsp&nbsp&nbsp&nbsp}<br>}<br><br>void func_two() {<br>&nbsp&nbsp&nbsp&nbspprintf("4 ");<br>}<br></p>
+</div>
+
+<div class="form-text">
+  <p>
+The input format you will use for strings is a bit different than for integers. Instead of a single number, each input will consist of a sequence of characters surrounded by quotation marks. If char* input = "hello world", then strlen(input) = 11 and input[1] = e. If char* input = "", then strlen(input) = 0 and input[0] will produce an error. Use the text area below to experiment with different inputs into "func_one", each input on its own line, and click "Evaluate Inputs" to see what outputs are produced.
+</p>
+</div>
+
+<form>
+  <label for="textarea" class="form-label">
+Values for input_one
+</label>
+
+  <br>
+
+  <textarea id="textarea" name="textarea" rows="4" cols="50">
+""
+"hello world"
+</textarea>
+
+  <br>
+  
+  <button class="button" type="button" onclick="clickEvaluateButton()">
+Evaluate Inputs
+</button>
+  <button class="button" type="button" onclick="clickResetButton()">
+Reset to Example
+</button>
+
+  <br>
+  <br>
+  
+  <label for="outputs" class="form-label">
+Outputs from executing func_one
+</label>
+
+  <br>
+
+  <textarea id="outputs" name="outputs" rows="4" cols="50"></textarea>
+
+  <br>
+  <br>
+
+  <a href="{% url 'select_challenge_page' origin_type='intro' origin_name='intro2.html' two_pages_back=previous_page username=username %}"><button class="button" type="button">
+Next
+</button></a>
+
+</form>
+
+{% load static %}
+<script src="{% static 'js/intro2_func.js' %}"></script>
+{% endblock %}
+
+

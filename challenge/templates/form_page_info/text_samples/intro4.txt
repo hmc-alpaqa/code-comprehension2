@@ -1,0 +1,17 @@
+<final instructions>
+Each challenge page will have a timer like the one you see at the top of this page. That is how long you will be given to read the code snippet and write a set of inputs into the text area.
+<br>
+<br>The goal of the challenge is to write a set of inputs that cover as many unique outputs as possible. However, you should avoid including multiple inputs that produce the same output, as these will count against you. When the timer reaches zero, your inputs will be saved and any changes you make will not count.
+<br>
+<br>Between each of the three challenges, you will be directed to a rest page. You can spend as much time as you'd like on this page. After submitting the final challenge problem, your performance statistics will be placed onto a leaderboard with your username, which you can come back to and view any time while this study is active.
+<br>
+<br>Good luck!
+<final instructions>
+
+<origin type>intro<origin type>
+
+<origin name>intro4.html<origin name>
+
+<next page>
+Next
+<next page>
