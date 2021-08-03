@@ -9,9 +9,9 @@ class User(models.Model):
 
     #identifier = models.AutoField(primary_key=True)
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     
-    char_name = models.CharField(max_length=20)
+    char_name = models.CharField(max_length=20, null=True)
     #id = models.UUIDField(primary_key=True, default=uuid.uuid4,
     #                      help_text='Unique ID for this user')
 
@@ -26,7 +26,7 @@ class Submission(models.Model):
 
     verbose_name = "Submission"
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
     #id = models.UUIDField(primary_key=True, default=uuid.uuid4,
     #                      help_text='Unique ID for this submission')
@@ -46,7 +46,7 @@ class FactorSubmission(models.Model):
     """Model representing a submission for a specific"""
     """factor of a specific challenge"""
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     
     verbose_name = "Factor Submission"
 
@@ -77,7 +77,7 @@ class SubmissionSnapshot(models.Model):
     """Model representing a snapshot of a user's input"""
     #identifier = models.AutoField(primary_key=True)
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
     user = models.ForeignKey('User', on_delete=models.RESTRICT,
                              null=True)
@@ -101,10 +101,10 @@ class ChallengeTag(models.Model):
 
     #identifier = models.AutoField(primary_key=True)
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     
     tag = models.CharField(max_length=20,
-                           verbose_name="Challenge Tag")
+                           verbose_name="Challenge Tag", null=True)
 
     def __str__(self):
         """String for representing the ChallengeTag object"""
@@ -117,11 +117,11 @@ class FactorTag(models.Model):
 
     verbose_name = "Factor Tag"
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
     #identifier = models.AutoField(primary_key=True)
     
-    tag = models.CharField(max_length=20, verbose_name="Factor Tag")
+    tag = models.CharField(max_length=20, verbose_name="Factor Tag", null=True)
 
     challenge_tag = models.ForeignKey('ChallengeTag',
                                       on_delete=models.RESTRICT,
@@ -137,7 +137,7 @@ class FinalQuestions(models.Model):
 
     #identifier = models.AutoField(primary_key=True)
 
-    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     
     verbose_name = "Final Questions"
 
