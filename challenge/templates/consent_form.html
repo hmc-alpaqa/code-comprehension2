@@ -1,0 +1,52 @@
+{% extends 'challenge_form.html' %}
+
+
+{% block challenge_head %}
+{% endblock %}
+
+{% block challenge_top %}
+<p class="fill_parent">Consent Form</p>
+{% endblock %}
+
+
+{% block form_content %}
+<form action="{% url 'consent_form' origin='consent_form' user=user %}">
+  <div class="form-text">
+    <p>
+      You are invited to ___________ a research project. Volunteering [may/will/will probably (not)] benefit you directly, but/and you will be helping us/the investigators __________________________________. If you volunteer, you will _______________. This will take about [# of m/h/d/w…] of your time. Volunteering for this study involves no more risk than what a typical person experiences on a regular day [or “Volunteering for this study involves (description of risk)]. Your involvement is entirely up to you. You may withdraw at any time for any reason. Please continue reading for more information about the study.<br><br>
+
+Study Leadership: This research project is led by name and title of Principal Investigator(s) of the Claremont Graduate University, who is being supervised by [if applicable, name, title and affiliation of faculty supervisor].<br><br>
+Purpose: Provide a specific statement of purpose in nontechnical language, and summarize, in lay language, the scientific, scholarly, clinical, and any other objective(s) of the research.<br><br>
+
+Eligibility: State the specific inclusion/exclusion criteria.<br><br>
+
+Participation: During the study, you will be asked to _______________________________________. This will take about # minutes/hours/days/etc.<br><br>
+
+Risks Of Participation: The risks that you run by taking part in this study are _____________ These risks include ____________________________________________________. [Describe how the researchers will manage or control the risks.] [Use of deception in the study should be disclosed here.]<br><br>
+
+Benefits Of Participation: I/We [do not] expect the study to benefit you personally. [If applicable, i.e., if you do anticipate benefits for the subject:] The benefit(s) is/include _______________________. This study will benefit the researcher(s) by ________________________________________________. This study is also intended to benefit ________________.<br><br>
+
+Compensation: You [will/will not] be directly compensated [$ amount or description of item, if applicable] for participating in this study. [Include any conditions associated with reimbursement, such as completing a certain proportion of the study.]<br><br>
+
+Voluntary Participation: Your participation in this study is completely voluntary. You may stop or withdraw from the study [If applicable, add “or refuse to answer any particular question for any reason”] at any time without it being held against you. Your decision whether or not to participate will have no effect on your current or future connection with anyone at CGU [or with any other relevant entity/agency]. [For group settings, describe the alternative to participation.]<br><br>
+
+Confidentiality: Your individual privacy will be protected in all papers, books, talks, posts, or stories resulting from this study. [If confidentiality/privacy will not be promised, disclose this fact]. [NEW REQ:] I/We may use the data we collect for future research or share it with other researchers, but I/we will not reveal your identity with it [OR: “I/We will not use the data we collect for future research, nor share it with others.”]. In order to protect the confidentiality of your responses, I/we will __________________________________________.<br><br>
+
+Sponsorship [If applicable]: This study is being paid for by sponsoring agencies/funding source(s).<br><br>
+
+Further Information: If you have any questions or would like additional information about this study, please contact [name of the PI or a representative] at [phone number and email address] [For student investigators:] You may also contact [faculty supervisor] at [phone number and email address]. As a member of The Claremont Colleges consortium, HMC partners with the Claremont Graduate University for ethical and regulatory oversight of human subjects research and for other IRB services. The CGU Institutional Review Board (IRB) has approved this project. [If status is EXEMPT, replace “approved this project” with “certified this project as exempt.” If you have any ethical concerns about this project or about your rights as a human subject in research, you may contact the CGU IRB at (909) 607-9406 or at irb@cgu.edu. A copy of this form will be given to you if you wish to keep it.<br><br>
+
+Consent: Checking the box below means that you understand the information on this form, that someone has answered any and all questions you may have about this study, and you voluntarily agree to participate in it.<br><br>
+
+    <p>
+  </div>
+  
+  <label for="do_you_consent" class="form__label form_font">I consent</label>
+  <input id="do_you_consent" type="checkbox" name="do_you_consent">
+  <input type="submit" value="Proceed">
+  
+  {% if submitted_unchecked %}
+  <p class="error-text">You must consent in order to participate</p>
+  {% endif %}
+</form>
+{% endblock %}

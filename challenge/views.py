@@ -134,6 +134,21 @@ def submit_challenge3(request, origin_type, origin_name, two_pages_back, usernam
     factor_submission.save()
 
     return HttpResponse()
+
+def consent_form(request, origin, user):
+    consent_given = None
+    if origin == "consent_form":
+        if 'do_you_consent' in request.GET:
+
+            return select_challenge_page(request, "no type", 
+                                         "create_key.html",
+                                         "no two pages back",
+                                         user)
+
+        else:
+            return render(request, 'consent_form.html', context={'user':user, 'submitted_unchecked':'yes'})
+
+    return render(request, 'consent_form.html', context={'user':user})
     
 def create_key(request, origin):
     attempted_user = None
@@ -147,13 +162,11 @@ def create_key(request, origin):
         if attempted_user not in taken:
             created_user = User(char_name=attempted_user)
             created_user.save()
-            return select_challenge_page(request, "no type",
-                                         "create_key.html",
-                                         "no two pages back",
-                                         attempted_user)
-
+            return consent_form(request, "create_key.html", attempted_user)
+        
     return render(request, 'create_key.html',
                   context={'attempted_user':attempted_user, 'suggested_user':suggested_user})
+
 
 def enter_key(request, origin):
     returning_user = None

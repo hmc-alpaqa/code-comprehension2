@@ -10,6 +10,8 @@ urlpatterns = [
     #to challenge_form depending on availability of their key (username)
     path('create_key/<str:origin>/', views.create_key, name='create_key'),
 
+    path('consent_form/<str:origin>/<str:user>/', views.consent_form, name='consent_form'),
+    
     #Conditionally directs to a specific challenge page
     path('select_challenge_page/<str:origin_type>/<str:origin_name>/<str:two_pages_back>/<str:username>/', views.select_challenge_page, name='select_challenge_page'),
 

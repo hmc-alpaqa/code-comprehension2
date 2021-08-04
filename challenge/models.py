@@ -26,6 +26,8 @@ class Submission(models.Model):
 
     verbose_name = "Submission"
 
+    temp_var = models.ForeignKey('SubmissionSnapshot', null=True, on_delete=models.RESTRICT)
+
     #uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
 
     #id = models.UUIDField(primary_key=True, default=uuid.uuid4,
