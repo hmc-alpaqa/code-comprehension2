@@ -28,11 +28,11 @@ urlpatterns = [
     
     #allows returning user to enter exising key, send user back to this
     #url or to leaderboard view, depending on whether the key exists
-    path('enter_key/<str:origin>', views.enter_key, name='enter_key'),
+    path('enter_key/<str:origin>/', views.enter_key, name='enter_key'),
 
     #allows user to select which leaderboard they would like to view,
     #sends them to that leaderboard
-    path('submissions/', views.select_leaderboard, name='select_leaderboard'),
+    path('submissions/<str:username>/', views.select_leaderboard, name='select_leaderboard'),
 
     #displays a leaderboard for a specific group in a specific challenge
     #problem

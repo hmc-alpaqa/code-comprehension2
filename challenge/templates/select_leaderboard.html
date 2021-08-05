@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="wrapper">
-  <h1><br>Each challenge problem has its own leaderboard</h1>
+  <h2><br>Each challenge problem has its own leaderboard. The group you were in for any given problem is highlighted in <a class="green-text">green</a>.</h2><br>
   <div class="wrap-1">
     <input type="radio" id="tab-1" name="tabs">
     <label for="tab-1"><div>Problem 1</div><div class="cross"></div></label>
@@ -15,11 +15,11 @@
       <p>Two groups of people were given different versions of Problem 1...<br><br></p>
       <div class="question-wrap">
         <input type="radio" id="prob1_group1" name="prob1_group1">
-        <a href="{% url 'leaderboard' challenge_tag='H_Index' factor_tag='Factor_1' %}">Group 1</a>
+        <a {% if p1g1 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='H_Index' factor_tag='Factor_1' %}">Group 1</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob1_group2" name="prob1_group2">
-        <a href="{% url 'leaderboard' challenge_tag='H_Index' factor_tag='Factor_2' %}">Group 2</a>
+        <a {% if p1g2 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='H_Index' factor_tag='Factor_2' %}">Group 2</a>
       </div>
       <br>
     </div>
@@ -31,19 +31,19 @@
       <p>Four groups of people were given different versions of Problem 2...<br><br></p>
       <div class="question-wrap">
         <input type="radio" id="prob2_group1" name="prob2_group1">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_1' %}">Group 1</a>
+        <a {% if p2g1 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_1' %}">Group 1</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob2_group2" name="prob2_group2">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_2' %}">Group 2</a>
+        <a {% if p2g2 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_2' %}">Group 2</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob2_group3" name="prob2_group3">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_3' %}">Group 3</a>
+        <a {% if p2g3 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_3' %}">Group 3</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob2_group4" name="prob2_group4">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_4' %}">Group 4</a>
+        <a {% if p2g4 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Substring' factor_tag='Factor_4' %}">Group 4</a>
       </div>
       <br>
     </div>
@@ -55,19 +55,19 @@
       <p>Four groups of people were given different versions of Problem 3...<br><br></p>
       <div class="question-wrap">
         <input type="radio" id="prob3_group1" name="prob3_group1">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_1' %}">Group 1</a>
+        <a {% if p3g1 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_1' %}">Group 1</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob3_group2" name="prob3_group2">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_2' %}">Group 2</a>
+        <a {% if p3g2 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_2' %}">Group 2</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob3_group3" name="prob3_group3">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_3' %}">Group 3</a>
+        <a {% if p3g3 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_3' %}">Group 3</a>
       </div>
       <div class="question-wrap">
         <input type="radio" id="prob3_group4" name="prob3_group4">
-        <a href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_4' %}">Group 4</a>
+        <a {% if p3g4 %} class="green-text" {% endif %} href="{% url 'leaderboard' challenge_tag='Contains_Loop' factor_tag='Factor_4' %}">Group 4</a>
       </div>
       <br>
     </div>

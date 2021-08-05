@@ -45,7 +45,7 @@
   <br>
   <br>
 
-<a href="{% url 'select_leaderboard' %}"><button class="button" type="button" onclick="final_questions('{{ username }}', document.getElementById('textarea1').value, document.getElementById('textarea2').value)">
+<a href="{% url 'select_leaderboard' username %}"><button class="button" type="button" onclick="final_questions('{{ username }}', document.getElementById('textarea1').value, document.getElementById('textarea2').value)">
       Submit
   </button></a>
 </form>

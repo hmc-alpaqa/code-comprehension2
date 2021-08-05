@@ -155,7 +155,7 @@ def create_key(request, origin):
     if origin == "create_key":
         attempted_user = request.GET['username']
 
-    taken = []#[user.char_name for user in User.objects.all()]
+    taken = [user.char_name for user in User.objects.all()]
     suggested_user = valid_username(taken)
 
     if attempted_user:
@@ -174,11 +174,11 @@ def enter_key(request, origin):
         returning_user = request.GET['username']
 
     if returning_user:
-        taken = []#[user.char_name for user in User.objects.all()]
+        taken = [user.char_name for user in User.objects.all()]
         if returning_user in taken:
             latest_submission_snapshot = SubmissionSnapshot.objects.filter(user__char_name__exact=returning_user).filter(challenge_tag__tag__exact="Contains_Loop")
             if len(latest_submission_snapshot) != 0:
-                return select_leaderboard(request)
+                return select_leaderboard(request, returning_user)
 
             else:
                 latest_submission_snapshot = SubmissionSnapshot.objects.filter(user__char_name__exact=returning_user).filter(challenge_tag__tag__exact="Contains_Substring")
@@ -209,8 +209,25 @@ def enter_key(request, origin):
 
     return render(request, 'enter_key.html', context={'returning_user':returning_user})
 
-def select_leaderboard(request):
-    return render(request, 'select_leaderboard.html')
+def select_leaderboard(request, username):
+    user = User.objects.filter(char_name__exact=username)[0]
+    submission = Submission.objects.filter(user__exact=user)[0]
+    factor_submissions = FactorSubmission.objects.filter(submission__exact=submission)
+
+    ordered_submissions = [None, None, None]
+    tag_map = {"H_Index":0, "Contains_Substring":1, "Contains_Loop":2}
+    for factor_submission in factor_submissions:
+        index = tag_map[factor_submission.challenge_tag.tag]
+        ordered_submissions[index] = factor_submission
+
+    group_indicators = []
+    group_number_map = {"Factor_1":1, "Factor_2":2, "Factor_3":3, "Factor_4":4}
+    for factor_submission in ordered_submissions:
+        group_number = group_number_map[factor_submission.factor_tag.tag]
+        group_indicators.append(group_number)
+        
+    return render(request, 'select_leaderboard.html',
+                  context={f"p1g{group_indicators[0]}":"yes", f"p2g{group_indicators[1]}":"yes", f"p3g{group_indicators[2]}":"yes"})
 
 def leaderboard(request, challenge_tag, factor_tag):
     submissions_requested = FactorSubmission.objects.filter(challenge_tag__tag__exact=challenge_tag).filter(factor_tag__tag__exact=factor_tag)
