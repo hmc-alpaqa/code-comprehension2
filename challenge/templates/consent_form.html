@@ -12,6 +12,10 @@
 {% block form_content %}
 <form action="{% url 'consent_form' origin='consent_form' user=user %}">
   <div class="form-text">
+      {% if submitted_unchecked %}
+      <p class="error-text">You must consent in order to participate</p>
+      {% endif %}
+
     <p>
       You are invited to ___________ a research project. Volunteering [may/will/will probably (not)] benefit you directly, but/and you will be helping us/the investigators __________________________________. If you volunteer, you will _______________. This will take about [# of m/h/d/w…] of your time. Volunteering for this study involves no more risk than what a typical person experiences on a regular day [or “Volunteering for this study involves (description of risk)]. Your involvement is entirely up to you. You may withdraw at any time for any reason. Please continue reading for more information about the study.<br><br>
 
@@ -43,6 +47,7 @@ Consent: Checking the box below means that you understand the information on thi
   
   <label for="do_you_consent" class="form__label form_font">I consent</label>
   <input id="do_you_consent" type="checkbox" name="do_you_consent">
+  <br>
   <input type="submit" value="Proceed">
   
   {% if submitted_unchecked %}
