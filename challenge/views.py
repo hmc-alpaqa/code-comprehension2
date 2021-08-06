@@ -37,7 +37,7 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
     
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(sender, password)
-        message = f"Subject: code challenge submission\n\nemail: f{user_email}"
+        message = f"Subject: code challenge submission\n\nemail: {user_email}"
 
         print(f"Message: {message}")
         server.sendmail(sender, destination, message)
