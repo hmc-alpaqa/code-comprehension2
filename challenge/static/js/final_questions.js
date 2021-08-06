@@ -16,11 +16,11 @@ function getCookie(name) {
 }
 const csrf4 = getCookie('csrftoken');
 
-function final_questions(username, answer1, answer2) {
+function final_questions(username, answer1, answer2, user_email) {
     $.ajax({
 	type: "POST",
 	url: "submit_challenge/",
-	data: {csrfmiddlewaretoken: csrf4, username: username, answer1: answer1, answer2: answer2 },
+	data: {csrfmiddlewaretoken: csrf4, username: username, answer1: answer1, answer2: answer2, user_email:user_email },
 	success: function(response) {
 	}
     });

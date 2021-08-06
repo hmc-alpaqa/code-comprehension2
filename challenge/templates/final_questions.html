@@ -45,7 +45,21 @@
   <br>
   <br>
 
-<a href="{% url 'select_leaderboard' username %}"><button class="button" type="button" onclick="final_questions('{{ username }}', document.getElementById('textarea1').value, document.getElementById('textarea2').value)">
+  <label for="textarea3">
+    Please enter your email address if you would like to receive compensation for participating in the study.
+  </label>
+
+  <br><br>
+
+  <textarea id="textarea3" name="textarea3" rows="1" cols="30">
+    Ex: johnsmith123@email.com
+  </textarea>
+  
+  <br>
+  <br>
+  <br>
+  
+<a href="{% url 'select_leaderboard' username %}"><button class="button" type="button" onclick="final_questions('{{ username }}', document.getElementById('textarea1').value, document.getElementById('textarea2').value, documet.getElementById('textarea3').value)">
       Submit
   </button></a>
 </form>

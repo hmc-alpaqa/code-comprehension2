@@ -8,7 +8,7 @@ import random
 import re
 from random_username.generate import generate_username
 
-
+import smtplib, ssl
 
 def login_or_new(request):
     return render(request, 'login_or_new.html')
@@ -18,6 +18,8 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
     answer1 = request.POST['answer1']
     answer2 = request.POST['answer2']
 
+    user_email = request.POST['user_email']
+    
     user = User.objects.filter(char_name__exact=username)[0]
     submission = Submission.objects.filter(user__exact=user)[0]
 
@@ -25,7 +27,21 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
                                      answers2=answer2)
     final_questions.save()
     
+
+    #start send email
+    port = 465
+    password = "POISErt91"
+    context = ssl.create_default_context()
+    destination = "dae1@williams.edu"
+    sender = "mudd.code.challenge@gmail.com"
     
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login(sender, password)
+        message = f"Subject: code challenge submission\n\nemail: f{user_email}"
+
+        server.sendmail(sender, destination, message)
+    #end send email
+        
     return HttpResponse()
 
 def select_challenge_page(request, origin_type: str, origin_name: str, two_pages_back: str, username: str):    
