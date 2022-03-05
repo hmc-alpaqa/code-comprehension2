@@ -228,6 +228,7 @@ def enter_key(request, origin):
 
 def select_leaderboard(request, username):
     user = User.objects.filter(char_name__exact=username)[0]
+    print(f"Printing submission objects: {Submission.objects}")
     submission = Submission.objects.filter(user__exact=user)[0]
     factor_submissions = FactorSubmission.objects.filter(submission__exact=submission)
 
