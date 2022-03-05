@@ -104,6 +104,7 @@ def submit_challenge1(request, origin_type, origin_name, two_pages_back, usernam
     user = User.objects.filter(char_name__exact=username)[0]
     submission = Submission(which_submission=1, user=user)
     submission.save()
+    print(f"Saved user = {user} ?with username = {username}? into submission = {submission}")
 
     challenge_tag = ChallengeTag.objects.filter(tag__exact="H_Index")[0]
     factor_tag_name = f"Factor_{factor}"
@@ -195,6 +196,7 @@ def enter_key(request, origin):
         if returning_user in taken:
             latest_submission_snapshot = SubmissionSnapshot.objects.filter(user__char_name__exact=returning_user).filter(challenge_tag__tag__exact="Contains_Loop")
             if len(latest_submission_snapshot) != 0:
+                print(f"returning user with username {returning_user}")
                 return select_leaderboard(request, returning_user)
 
             else:
@@ -228,7 +230,7 @@ def enter_key(request, origin):
 
 def select_leaderboard(request, username):
     user = User.objects.filter(char_name__exact=username)[0]
-    print(f"Printing submission objects: {Submission.objects}")
+    print(f"called select leaderboard with username {username} and user {user}")
     submission = Submission.objects.filter(user__exact=user)[0]
     factor_submissions = FactorSubmission.objects.filter(submission__exact=submission)
 
