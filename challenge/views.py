@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import User, Submission, FactorSubmission, ChallengeTag, FactorTag, SubmissionSnapshot, FinalQuestions
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 
 import parse
