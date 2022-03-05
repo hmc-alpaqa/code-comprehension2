@@ -279,6 +279,7 @@ def leaderboard(request, challenge_tag, factor_tag):
 @csrf_exempt
 def take_snapshot(request, origin_type, origin_name, two_pages_back, username):
     challenge_tag_name = request.POST['prob']
+    print(f"getting name {challenge_tag_name}")
     input_snapshot = request.POST['input_snapshot']
     time = request.POST['time']
     which_box = request.POST['which_box']
