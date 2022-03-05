@@ -12,8 +12,8 @@ from random_username.generate import generate_username
 import smtplib, ssl
 
 def login_or_new(request):
+    challenge_names = ["H_Index", "Contains_Substring", "Contains_Loop"]
     if ChallengeTag.objects.count() == 0:
-        challenge_names = ["H_Index", "Contains_Substring", "Contains_Loop"]
         challenges = [ChallengeTag(tag=name) for name in challenge_names]
         for challenge in challenges:
             challenge.save()
@@ -22,8 +22,9 @@ def login_or_new(request):
         num_factors = [2, 4, 4]
         for i in range(len(num_factors)):
             for j in range(num_factors[i]):
-                factor_name = f"Factor_{num_factors[j]}"
-                factor = FactorTag(tag=factor_name, challenge_tag=challenges[i])
+                factor_name = f"Factor_{j}"
+                challenge = ChallengeTag.objects.filter(tag__exact=challenge_names[i])[0]
+                factor = FactorTag(tag=factor_name, challenge_tag=challenge)
                 factor.save()
             
         
