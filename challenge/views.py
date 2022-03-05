@@ -18,11 +18,11 @@ def login_or_new(request):
         for challenge in challenges:
             challenge.save()
 
-    if FactorTag.objects.count() == 0:
-        num_factors = [2, 4, 4]
-        for i in range(len(num_factors)):
-            for j in range(num_factors[i]):
-                factor_name = f"Factor_{j}"
+    num_factors = [2, 4, 4]
+    for i in range(len(num_factors)):
+        for j in range(num_factors[i]):
+            factor_name = f"Factor_{j+1}"
+            if FactorTag.objects.filter(tag__exact=factor_name).count() == 0:
                 challenge = ChallengeTag.objects.filter(tag__exact=challenge_names[i])[0]
                 factor = FactorTag(tag=factor_name, challenge_tag=challenge)
                 factor.save()
