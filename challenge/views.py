@@ -14,6 +14,7 @@ import smtplib, ssl
 def login_or_new(request):
     return render(request, 'login_or_new.html')
 
+@csrf_exempt
 def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back: str, username: str):
     username = request.POST['username']
     answer1 = request.POST['answer1']
@@ -96,6 +97,7 @@ def select_challenge_page(request, origin_type: str, origin_name: str, two_pages
 
     return render(request, page_to_render, context)
 
+@csrf_exempt
 def submit_challenge1(request, origin_type, origin_name, two_pages_back, username):
     username = request.POST['username']
     factor = request.POST['factor']
@@ -117,6 +119,7 @@ def submit_challenge1(request, origin_type, origin_name, two_pages_back, usernam
     
     return HttpResponse()
 
+@csrf_exempt
 def submit_challenge2(request, origin_type, origin_name, two_pages_back, username):
     username = request.POST['username']
     factor = request.POST['factor']
@@ -136,6 +139,7 @@ def submit_challenge2(request, origin_type, origin_name, two_pages_back, usernam
 
     return HttpResponse()
 
+@csrf_exempt
 def submit_challenge3(request, origin_type, origin_name, two_pages_back, username):
     username = request.POST['username']
     factor = request.POST['factor']
