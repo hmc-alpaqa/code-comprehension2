@@ -272,6 +272,7 @@ def leaderboard(request, challenge_tag, factor_tag):
                            'challenge':challenge_display,
                            'factor':factor_display})
 
+@csrf_exempt
 def take_snapshot(request, origin_type, origin_name, two_pages_back, username):
     challenge_tag_name = request.POST['prob']
     input_snapshot = request.POST['input_snapshot']
