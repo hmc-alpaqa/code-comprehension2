@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "apc-comprehension-study-344922",
+  "private_key_id": "96deac80972cc6353f7d4f71d772724414bec39c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCvXT5HZC8AiZfl\nkH2EqlR+YNX40r4Jga+RAyS8od2lBM9yNju60t064f8wAG2bzx8+yStfe2q0H7UQ\nI6B+73JM0qqyNQRwq34ImnEkPIkbgu5ZJvNSMDawVJcPDVmiJgiDAtagRCnnz/U1\n6yDOjrcV/nbRFmjxiP+JvsP360eH3lGfId+xyhevrh8yZzvXPM5shcwdvYv1yanb\nVnj3rJFjoT8REvLLoVGN+u4gg9juy2WcbPGSijhbTQgPeWTF508e7+z8BufIiVb6\nRN5NO0T//lyei7UtbHylIIKKTjG161zJ70y5kghhVTHi95Gc/VusEiqfqJc82sjK\nsJDozzLzAgMBAAECggEAKyUJuY7QcZVopbZS61zsxNsWSc2vq68YftkDJNW+Lmds\nknD9aQ2QGHiZzDmOvhLLYSslXKyEqCRU68+YISLQQE5kaMvad835iCxXQc8S/I3O\nDmki3Em4atGlCLMEJnytA26jV3LtzHbBoa5jt+4s5WBh4zdcQnCuTjl9BXYBd0+1\nyceHGQxKojGYVxXNfnNwsbsYuv832OROM2XmHbRKrgkXjhKWrk/0kKeCAzoJfXFM\nlE8raBTU9QtCmpD5JepXxx/dTVKfSwPjImW5zk6cJkmpdaTwZ+cUQO45hRKSdbIe\nKsPU3ySJQZ92Qx0LbZwh0JhfDCbqFRCl8UW0N4j8AQKBgQD3ZP16xDPrXStXotb3\nylLzPGSblQiz2JZwI+l47M8T2iNGwgxnylsInYOCIesmukqhkqvz14T1v2GlT5os\ny37my+ffjqcqaHGRb7eIYxe6o68zEKJRNAruaCk1oypDfg+3Bpv+mL6gBdNU2lf8\n7Li5zsD0gKzNnzaBhRnihINkgQKBgQC1dtWxsytLZtRpDOTZWnET8gW3EuZ2T26u\n5KRKm17px+yDBeTfM7iuKT3HJfh0W1NTWYYPdgwaQHb7RCpaWoDUxbt0i4qZBdx8\nFwSJWvxRMHXHch7lIrubcpc82Lj9pXab13054rFccnxXDghUDxedR8j+KY7mUldz\nIA+j1G6NcwKBgQC7VgsoWsiiEvROMW4tR1VXAUWCFvH3FiydEGSsgE4yzz1lSG4S\nbkZPGM/LzBmAQxNelG2HgY0admjfwI6UGyimZoPYYvKtB1fwdLN7IOaIG4kA1zjC\n2vDoJZIHHt5TK3OE+glIWqwHC0JDf++fBDbB5RFyVLoGHuksXPkD8ap5gQKBgQCa\nTHecaAsSTFelE6+sGbk5CnxNlSadxyEIWaZRQhfMlZDIQETCfco1XSAIrIK8/cK2\nhtL1Zp0X3WTOdsHEnlwZkCC7EsRBJbi7Ux8qZFFT/+7GLoWStJvtq9xpgqaaFw3p\nqavzgozpXPfZVjdCsqqTtCx14YR+19lALSzfU4zFfQKBgQDbsWVV1kiwg0t51IuQ\nbUbfNMTL941qRCV5wnMqecTAtaoDwRHPpVDV0YUWR5TJVcCy5ISaRy2tCTHE1Mzf\ni+Gl2dGacv83GMEsEVLvX9AgvuqclvBqs67W2UOYQZUjJLNwAIejw1mLuJk21lki\nWAoxRPHkoquayf+calMruU+GfA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "code-comprehension@apc-comprehension-study-344922.iam.gserviceaccount.com",
+  "client_id": "113030912701540879507",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/code-comprehension%40apc-comprehension-study-344922.iam.gserviceaccount.com"
+}
