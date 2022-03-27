@@ -275,6 +275,7 @@ def submit_challenge3(request, origin_type, origin_name, two_pages_back, usernam
 
     challenge_tag = ChallengeTag.objects.filter(tag__exact="Contains_Loop")[0]
     factor_tag_name = f"Factor_{factor}"
+    print(f"factor tag name is {factor_tag_name}")
     factor_tag = FactorTag.objects.filter(challenge_tag__exact=challenge_tag).filter(tag__exact=factor_tag_name)[0]
 
     factor_submission = FactorSubmission(submission=submission, challenge_tag=challenge_tag, factor_tag=factor_tag, time=time, response1=responses, response2="none")
