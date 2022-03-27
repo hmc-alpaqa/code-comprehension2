@@ -60,7 +60,7 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
     creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
     client = gspread.authorize(creds)
 
-    sheet = client.open('APC Comprehension Study Results')
+    sheet = client.open('APC Comprehension Study Results').get_worksheet(0)
     num_submissions = int(sheet.cell(1, 2))
     #Update submission count
     sheet.update_cell(1, 2, str(num_submissions+1))
