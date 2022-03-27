@@ -237,7 +237,7 @@ def submit_challenge1(request, origin_type, origin_name, two_pages_back, usernam
     factor_tag_name = f"Factor_{factor}"
     factor_tag = FactorTag.objects.filter(challenge_tag__exact=challenge_tag).filter(tag__exact=factor_tag_name)[0]
 
-    
+    submission = Submission.objects.filter(user__exact=user)
     factor_submission = FactorSubmission(submission=submission, challenge_tag=challenge_tag, factor_tag=factor_tag, time=time, response1=responses, response2="none")
     factor_submission.save()
     
