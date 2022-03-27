@@ -48,7 +48,6 @@ INSTALLED_APPS = [
 
     #Apps I installed
     'challenge.apps.ChallengeConfig',
-    'gsheets',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +87,7 @@ WSGI_APPLICATION = 'evaluate_tests.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', #postgresql_psycopg2 for online or sqlite3 for local
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', #postgresql_psycopg2 for online or sqlite3 for local
         'NAME': 'my_db',
         'USER': 'hero',
         'PASSWORD': 'my_db@123',

@@ -57,5 +57,5 @@ var poll_function = setInterval(function() {
     } 
 
     console.log(time_passed);
-    time_passed += 2;
-}, 2000);
+    time_passed += 10;
+}, 10000);

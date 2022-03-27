@@ -11,6 +11,10 @@ from random_username.generate import generate_username
 
 import smtplib, ssl
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import pprint
+
 def login_or_new(request):
     challenge_names = ["H_Index", "Contains_Substring", "Contains_Loop"]
     if ChallengeTag.objects.count() == 0:
@@ -45,22 +49,125 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
     final_questions = FinalQuestions(submission=submission, answers1=answer1,
                                      answers2=answer2)
     final_questions.save()
-    
 
-    #start send email
-    port = 465
-    password = "POISErt91"
-    context = ssl.create_default_context()
-    destination = "dae1@williams.edu"
-    sender = "mudd.code.challenge@gmail.com"
-    
-    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-        server.login(sender, password)
-        message = f"Subject: code challenge submission\n\nemail: {user_email}"
+    #Authorize the API
+    scope = [
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/drive.file'
+    ]
+    file_name = 'client_key.json'
+    creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
+    client = gspread.authorize(creds)
 
-        print(f"Message: {message}")
-        server.sendmail(sender, destination, message)
-    #end send email
+    sheet = client.open('APC Comprehension Study Results')
+    num_submissions = int(sheet.cell(1, 2))
+    #Update submission count
+    sheet.update_cell(1, 2, str(num_submissions+1))
+    row = num_submissions + 3
+
+    #Insert username
+    sheet.update_cell(row, 1, str(user.char_name))
+    
+    factor_submissions = FactorSubmission.objects.filter(submission__exact=submission)
+    
+    challenge_tag1 = ChallengeTag.objects.filter(tag__exact="H_Index")[0]
+    submission1 = factor_submissions.filter(challenge_tag__exact=challenge_tag1)[0]
+
+    #Insert group for Q1
+    sheet.update_cell(row, 2, str(submission1.factor_tag.tag))
+    #Insert response for Q1
+    sheet.update_cell(row, 3, str(submission1.response1))
+    #Insert time for Q1
+    sheet.update_cell(row, 5, str(submission1.time))
+    
+    challenge_tag2 = ChallengeTag.objects.filter(tag__exact="Contains_Substring")[0]
+    submission2 = factor_submissions.filter(challenge_tag__exact=challenge_tag2)[0]
+
+    #Insert group for Q2
+    sheet.update_cell(row, 6, str(submission2.factor_tag.tag))
+    #Insert response for Q2, field 1
+    sheet.update_cell(row, 7, str(submission2.response1))
+    #Insert response for Q2, field 2
+    sheet.update_cell(row, 8, str(submission2.response2))
+    #Insert time for Q2
+    sheet.update_cell(row, 11, str(submission2.time))
+    
+    challenge_tag3 = ChallengeTag.objects.filter(tag__exact="Contains_Loop")[0]
+    submission3 = factor_submissions.filter(challenge_tag__exact=challenge_tag3)[0]
+
+    #Insert group for Q3
+    sheet.update_cell(row, 12, str(submission3.factor_tag.tag))
+    #Insert response for Q3
+    sheet.update_cell(row, 13, str(submission3.response1))
+    #Insert time for Q3
+    sheet.update_cell(row, 15, str(submission3.time))
+    
+    
+    snapshots = SubmissionSnapshot.objects.filter(user__exact=user)
+    shapshots1 = snapshots.filter(challenge_tag__exact=challenge_tag1)
+    shapshots2 = snapshots.filter(challenge_tag__exact=challenge_tag2)
+    shapshots3 = snapshots.filter(challenge_tag__exact=challenge_tag3)
+
+    #Insert snapshops for Q1
+    snapshots1_text = ""
+    for shapshot1 in snapshots1:
+        addition = f"seconds:\n{str(snapshot1.time)}\nsnapshot:\n{str(snapshot1.input_snapshot)}\n"
+        if len(snapshots1_text) == 0:
+            snapshots1_text = addition
+        else:
+            snapshots1_text = f"{snapshots1_text}---\n{addition}"
+    sheet.update_cell(row, 4, snapshots1_text)
+
+    #Insert snapshots for Q2
+    snapshots2_box1_text = ""
+    snapshots2_box2_text = ""
+    for snapshot2 in shapshots2:
+        addition = f"seconds:\n{str(snapshot2.time)}\nsnapshot:\n{str(snapshot2.input_snapshot)}\n"
+        if str(snapshot2.box) == "1":
+            if len(snapshots2_box1_text) == 0:
+                snapshots2_box1_text = addition
+            else:
+                snapshots2_box1_text = f"{snapshots2_box1_text}---\n{addition}"
+        else:
+            if len(snapshots2_box2_text) == 0:
+                snapshots2_box2_text = addition
+            else:
+                snapshots2_box2_text = f"{snapshots2_box2_text}---\n{addition}"
+    sheet.update_cell(row, 9, snapshots2_box1_text)
+    sheet.update_cell(row, 10, snapshots2_box2_text)
+
+    #Insert snapshops for Q3
+    snapshots3_text = ""
+    for shapshot3 in snapshots3:
+        addition = f"seconds:\n{str(snapshot3.time)}\nsnapshot:\n{str(snapshot3.input_snapshot)}\n"
+        if len(snapshots3_text) == 0:
+            snapshots3_text = addition
+        else:
+            snapshots3_text = f"{snapshots3_text}---\n{addition}"
+    sheet.update_cell(row, 4, snapshots3_text)
+
+    #Insert survey Q1 response
+    sheet.update_cell(row, 16, answer1)
+    #Insert survey Q2 response
+    sheet.update_cell(row, 17, answer2)
+    #Insert survey Q3 response
+    sheet.update_cell(row, 18, user_email)
+
+    def dont_do():
+        #start send email
+        port = 465
+        password = "POISErt91"
+        context = ssl.create_default_context()
+        destination = "dae1@williams.edu"
+        sender = "mudd.code.challenge@gmail.com"
+        
+        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+            server.login(sender, password)
+            message = f"Subject: code challenge submission\n\nemail: {user_email}"
+
+            print(f"Message: {message}")
+            server.sendmail(sender, destination, message)
+            #end send email
         
     return HttpResponse()
 
