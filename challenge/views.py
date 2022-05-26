@@ -51,23 +51,12 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
                                      answers2=answer2)
     final_questions.save()
 
-    #Authorize the API
-    scope = [
-        'https://www.googleapis.com/auth/drive',
-        'https://www.googleapis.com/auth/drive.file'
-    ]
-    file_name = 'client_key.json'
-    creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
-    client = gspread.authorize(creds)
 
-    sheet = client.open('APC Comprehension Study Results').get_worksheet(0)
-    num_submissions = int(sheet.cell(1, 2))
-    #Update submission count
-    sheet.update_cell(1, 2, str(num_submissions+1))
-    row = num_submissions + 3
+    spreadsheet_row = ["" for i in range(18)]
 
     #Insert username
-    sheet.update_cell(row, 1, str(user.char_name))
+    spreadsheet_row[0] = str(user.char_name)
+    #sheet.update_cell(row, 1, str(user.char_name))
     
     factor_submissions = FactorSubmission.objects.filter(submission__exact=submission)
     
@@ -75,54 +64,72 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
     submission1 = factor_submissions.filter(challenge_tag__exact=challenge_tag1)[0]
 
     #Insert group for Q1
-    sheet.update_cell(row, 2, str(submission1.factor_tag.tag))
+    spreadsheet_row[1] = str(submission1.factor_tag.tag)
+    #sheet.update_cell(row, 2, str(submission1.factor_tag.tag))
+    
     #Insert response for Q1
-    sheet.update_cell(row, 3, str(submission1.response1))
+    spreadsheet_row[2] = str(submission1.response1)
+    #sheet.update_cell(row, 3, str(submission1.response1))
+    
     #Insert time for Q1
-    sheet.update_cell(row, 5, str(submission1.time))
+    spreadsheet_row[4] = str(submission1.time)
+    #sheet.update_cell(row, 5, str(submission1.time))
     
     challenge_tag2 = ChallengeTag.objects.filter(tag__exact="Contains_Substring")[0]
     submission2 = factor_submissions.filter(challenge_tag__exact=challenge_tag2)[0]
 
     #Insert group for Q2
-    sheet.update_cell(row, 6, str(submission2.factor_tag.tag))
+    spreadsheet_row[5] = str(submission2.factor_tag.tag)
+    #sheet.update_cell(row, 6, str(submission2.factor_tag.tag))
+    
     #Insert response for Q2, field 1
-    sheet.update_cell(row, 7, str(submission2.response1))
+    spreadsheet_row[6] = str(submission2.response1)
+    #sheet.update_cell(row, 7, str(submission2.response1))
+    
     #Insert response for Q2, field 2
-    sheet.update_cell(row, 8, str(submission2.response2))
+    spreadsheet_row[7] = str(submission2.response2)
+    #sheet.update_cell(row, 8, str(submission2.response2))
+    
     #Insert time for Q2
-    sheet.update_cell(row, 11, str(submission2.time))
+    spreadsheet_row[10] = str(submission2.time)
+    #sheet.update_cell(row, 11, str(submission2.time))
     
     challenge_tag3 = ChallengeTag.objects.filter(tag__exact="Contains_Loop")[0]
     submission3 = factor_submissions.filter(challenge_tag__exact=challenge_tag3)[0]
 
     #Insert group for Q3
-    sheet.update_cell(row, 12, str(submission3.factor_tag.tag))
+    spreadsheet_row[11] = str(submission3.factor_tag.tag)
+    #sheet.update_cell(row, 12, str(submission3.factor_tag.tag))
+    
     #Insert response for Q3
-    sheet.update_cell(row, 13, str(submission3.response1))
+    spreadsheet_row[12] = str(submission3.response1)
+    #sheet.update_cell(row, 13, str(submission3.response1))
+    
     #Insert time for Q3
-    sheet.update_cell(row, 15, str(submission3.time))
+    spreadsheet_row[14] = str(submission3.time)
+    #sheet.update_cell(row, 15, str(submission3.time))
     
     
     snapshots = SubmissionSnapshot.objects.filter(user__exact=user)
-    shapshots1 = snapshots.filter(challenge_tag__exact=challenge_tag1)
-    shapshots2 = snapshots.filter(challenge_tag__exact=challenge_tag2)
-    shapshots3 = snapshots.filter(challenge_tag__exact=challenge_tag3)
+    snapshots1 = snapshots.filter(challenge_tag__exact=challenge_tag1)
+    snapshots2 = snapshots.filter(challenge_tag__exact=challenge_tag2)
+    snapshots3 = snapshots.filter(challenge_tag__exact=challenge_tag3)
 
     #Insert snapshops for Q1
     snapshots1_text = ""
-    for shapshot1 in snapshots1:
+    for snapshot1 in snapshots1:
         addition = f"seconds:\n{str(snapshot1.time)}\nsnapshot:\n{str(snapshot1.input_snapshot)}\n"
         if len(snapshots1_text) == 0:
             snapshots1_text = addition
         else:
             snapshots1_text = f"{snapshots1_text}---\n{addition}"
-    sheet.update_cell(row, 4, snapshots1_text)
+    spreadsheet_row[3] = snapshots1_text
+    #sheet.update_cell(row, 4, snapshots1_text)
 
     #Insert snapshots for Q2
     snapshots2_box1_text = ""
     snapshots2_box2_text = ""
-    for snapshot2 in shapshots2:
+    for snapshot2 in snapshots2:
         addition = f"seconds:\n{str(snapshot2.time)}\nsnapshot:\n{str(snapshot2.input_snapshot)}\n"
         if str(snapshot2.box) == "1":
             if len(snapshots2_box1_text) == 0:
@@ -134,26 +141,51 @@ def submit_challenge(request, origin_type: str, origin_name: str, two_pages_back
                 snapshots2_box2_text = addition
             else:
                 snapshots2_box2_text = f"{snapshots2_box2_text}---\n{addition}"
-    sheet.update_cell(row, 9, snapshots2_box1_text)
-    sheet.update_cell(row, 10, snapshots2_box2_text)
+    spreadsheet_row[8] = snapshots2_box1_text
+    #sheet.update_cell(row, 9, snapshots2_box1_text)
+    spreadsheet_row[9] = snapshots2_box2_text
+    #sheet.update_cell(row, 10, snapshots2_box2_text)
 
     #Insert snapshops for Q3
     snapshots3_text = ""
-    for shapshot3 in snapshots3:
+    for snapshot3 in snapshots3:
         addition = f"seconds:\n{str(snapshot3.time)}\nsnapshot:\n{str(snapshot3.input_snapshot)}\n"
         if len(snapshots3_text) == 0:
             snapshots3_text = addition
         else:
             snapshots3_text = f"{snapshots3_text}---\n{addition}"
-    sheet.update_cell(row, 4, snapshots3_text)
+    spreadsheet_row[3] = snapshots3_text
+    #sheet.update_cell(row, 4, snapshots3_text)
 
     #Insert survey Q1 response
-    sheet.update_cell(row, 16, answer1)
+    spreadsheet_row[15] = answer1
+    #sheet.update_cell(row, 16, answer1)
+    
     #Insert survey Q2 response
-    sheet.update_cell(row, 17, answer2)
+    spreadsheet_row[16] = answer2
+    #sheet.update_cell(row, 17, answer2)
+    
     #Insert survey Q3 response
-    sheet.update_cell(row, 18, user_email)
+    spreadsheet_row[17] = user_email
+    #sheet.update_cell(row, 18, user_email)
+    
+    #Authorize the API
+    scope = [
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/drive.file'
+    ]
+    file_name = 'client_key.json'
+    creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
+    client = gspread.authorize(creds)
 
+    sheet = client.open('APC Comprehension Study Results').get_worksheet(0)
+    #num_submissions = int(sheet.cell(1, 2).value)
+    #Update submission count
+    #sheet.update_cell(1, 2, str(num_submissions+1))
+    #row = num_submissions + 3
+
+    sheet.append_row(spreadsheet_row)
+    
     def dont_do():
         #start send email
         port = 465
